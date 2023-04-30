@@ -1,15 +1,48 @@
 {
   "pages": [
-    "pages/hot/index",
-    "pages/video/index",
-    "pages/my/index"
+    "pages/home/index",
+    "pages/home/category",
+    "pages/home/cart",
+    "pages/home/my"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
+    "navigationBarTitleText": "uni-shop",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#a8700d",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "static/images/tabbar/tabbar_home.png",
+        "selectedIconPath": "/static/images/tabbar/tabbar_home1.png"
+      },
+      {
+        "pagePath": "pages/home/category",
+        "text": "分类",
+        "iconPath": "static/images/tabbar/tabbar_category.png",
+        "selectedIconPath": "/static/images/tabbar/tabbar_category1.png"
+      },
+      {
+        "pagePath": "pages/home/cart",
+        "text": "购物车",
+        "iconPath": "static/images/tabbar/tabbar_cart.png",
+        "selectedIconPath": "/static/images/tabbar/tabbar_cart1.png"
+      },
+      {
+        "pagePath": "pages/home/my",
+        "text": "我的",
+        "iconPath": "static/images/tabbar/tabbar_personal.png",
+        "selectedIconPath": "/static/images/tabbar/tabbar_personal1.png"
+      }
+    ]
   },
   "usingComponents": {}
 }
