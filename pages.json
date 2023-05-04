@@ -5,7 +5,9 @@
       "path": "pages/home/index",
       "style": {
         "navigationBarTitleText": "首页",
-        "enablePullDownRefresh": false
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true,
+        "navigationStyle": "custom"
       }
     },
     {
@@ -30,6 +32,38 @@
       }
     }
   ],
+  "subPackages": [
+    // 活动相关页面
+    {
+      "root": "pages/activity",
+      "pages": [
+        {
+          "path": "sign",
+          "style": {
+            "navigationBarTitleText": "签到中心"
+          }
+        }
+      ]
+    },
+    // 商品相关页面
+    {
+      "root": "pages/goods",
+      "pages": [
+        {
+          "path": "list",
+          "style": {
+            "navigationBarTitleText": "商品列表"
+          }
+        }
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/home/index": {
+      "network": "all",
+      "packages": ["pages/activity", "pages/goods"]
+    }
+  },
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-shop",

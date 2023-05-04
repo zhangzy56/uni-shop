@@ -1,21 +1,19 @@
 <template>
   <view class="content">
-    <my-login />
+    商品列表
   </view>
 </template>
 
 <script>
-import MyLogin from '@/components/my-login/index.vue'
-
 export default {
   data() {
     return {
     }
   },
   components: {
-    MyLogin
   },
-  onLoad() {},
+  onLoad() {
+  },
   methods: {},
 }
 </script>

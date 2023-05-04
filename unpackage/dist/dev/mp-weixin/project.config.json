@@ -18,7 +18,7 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "2.25.3",
+  "libVersion": "2.31.1",
   "appid": "wx2ec3656bca5ef6b8",
   "projectname": "uni-shop",
   "condition": {},

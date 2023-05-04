@@ -5,7 +5,20 @@
     "pages/home/cart",
     "pages/home/my"
   ],
-  "subPackages": [],
+  "subPackages": [
+    {
+      "root": "pages/activity",
+      "pages": [
+        "sign"
+      ]
+    },
+    {
+      "root": "pages/goods",
+      "pages": [
+        "list"
+      ]
+    }
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-shop",
@@ -43,6 +56,15 @@
         "selectedIconPath": "/static/images/tabbar/tabbar_personal1.png"
       }
     ]
+  },
+  "preloadRule": {
+    "pages/home/index": {
+      "network": "all",
+      "packages": [
+        "pages/activity",
+        "pages/goods"
+      ]
+    }
   },
   "usingComponents": {}
 }

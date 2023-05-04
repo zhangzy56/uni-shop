@@ -1,16 +1,29 @@
 <template>
-  <view class="content">首页</view>
+  <view class="home-box">
+    <u-no-network @retry="init"></u-no-network>
+
+    <home-head />
+  </view>
 </template>
 
 <script>
+import HomeHead from './index-components/home-head.vue'
+
 export default {
   data() {
     return {
-      title: 'Hello',
+      title: 'Hello'
     }
   },
+  components: {
+    HomeHead
+  },
   onLoad() {},
-  methods: {},
+  methods: {
+    init() {
+      console.log(1111)
+    }
+  }
 }
 </script>
 
