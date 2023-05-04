@@ -2,21 +2,42 @@
   <!-- 首页标题栏, 轮播图整合 -->
   <view class="title-swiper-wrap">
     <!-- 标题栏 -->
-    <view class="navbar-box" :style="[navbarStyle]">
-      <view class="navbar-bg" :style="[navBg]"></view>
+    <view class="navbar-box">
+      <!-- 下面是两个 正常dom : 撑起父元素的高度 -->
 
       <view class="status-bar" :style="{ height: statusBarHeight + 'px' }"></view>
 
       <view class="content" :style="[navbarContentStyle]">
         <view class="nav-title">
-          <text :style="[navTitleStyle, navTitleColor]">{{ navTitle || '' }}</text>
+          <text :style="{ color: navTitleColor }">星品商城</text>
         </view>
 
-        <view class="search-icon">
+        <view class="search-icon" @click="onSearchClick">
           <u-icon name="search" color="#fff" size="52"></u-icon>
         </view>
       </view>
+
+      <!-- 父元素的背景色dom 透明度 0 -> 1 -->
+      <view class="navbar-bg" :style="[navBg]"></view>
     </view>
+
+    <!-- 轮播组件 -->
+    <swiper
+      class="screen-swiper square-dot"
+      @change="onSwiperChange"
+      style="height: 520rpx"
+      :indicator-dots="true"
+      :circular="true"
+      :autoplay="true"
+      interval="5000"
+      duration="500"
+    >
+      <swiper-item v-for="(item, index) in list" :key="index" @tap="onSwiper(index)">
+        <image :src="item.image" mode="aspectFill"></image>
+      </swiper-item>
+    </swiper>
+
+    <view v-for="item in 200" :key="item">Item</view>
   </view>
 
   <!-- 轮播组件 -->
@@ -38,36 +59,33 @@ export default {
     return {
       statusBarHeight: systemInfo.statusBarHeight,
       navBg: { opacity: 0 },
-      navTitleColor: {
-        color: '#fff'
-      }
+      navTitleColor: '#fff',
+      swiperCur: 0
     }
   },
   props: {
-    navTitle: {
-      type: String,
-      default: '星品商城'
+    scrollTop: {
+      type: [String, Number],
+      default: 0
     },
-    navTitleStyle: {
-      type: Object,
-      default: () => ({
-        color: '#fff',
-        fontSize: '38rpx'
-      })
+    // 轮播图的数据,格式如：[ {image: 'xxxx', title: 'xxxx'}, ... ]，其中title字段可选
+    list: {
+      type: Array,
+      default() {
+        return [
+          {
+            image: 'https://demo.shopro.top/uploads/20230107/6b21f96cca4abbdc39a414c201f47ce0.jpg',
+            title: 'xxxx'
+          },
+          {
+            image: 'https://demo.shopro.top/uploads/20230106/0de9205044bda74aee566db96daec981.png',
+            title: 'xxxx222'
+          }
+        ]
+      }
     }
   },
   computed: {
-    // 整个导航栏的样式
-    navbarStyle() {
-      const style = {
-        zIndex: this.$u.zIndex.navbar,
-        background: 'none'
-      }
-
-      // Object.assign(style, this.background)
-
-      return style
-    },
     navbarHeight() {
       // #ifdef MP
       return ['devtools', 'ios'].includes(systemInfo.platform) ? 44 : 48
@@ -91,8 +109,63 @@ export default {
       return style
     }
   },
+  watch: {
+    scrollTop(newVal) {
+      const top = newVal
+
+      // 透明 -> 白色 背景
+      this.navBg = {
+        opacity: top > this.navbarHeight ? 1 : top * 0.01
+      }
+
+      this.navTitleColor = top > this.navbarHeight ? '#000' : '#fff'
+
+      // #ifndef H5
+      this.setStatusStyle(top > this.navbarHeight ? 'dark' : 'light')
+      // #endif
+    }
+  },
   onLoad() {},
-  methods: {}
+  methods: {
+    onSearchClick() {
+      console.log('this.$u.zIndex.navbar', 22222)
+    },
+    setStatusStyle(status) {
+      if (status == 'light') {
+        uni.setNavigationBarColor({
+          frontColor: '#ffffff',
+          backgroundColor: '#000000',
+          animation: {
+            duration: 200,
+            timingFunc: 'easeIn'
+          }
+        })
+
+        // #ifdef APP-PLUS
+        plus.navigator.setStatusBarStyle('light')
+        // #endif
+      } else {
+        uni.setNavigationBarColor({
+          frontColor: '#000000',
+          backgroundColor: '#ffffff',
+          animation: {
+            duration: 200,
+            timingFunc: 'easeIn'
+          }
+        })
+
+        // #ifdef APP-PLUS
+        plus.navigator.setStatusBarStyle('dark')
+        // #endif
+      }
+    },
+    onSwiperChange(e) {
+      this.swiperCur = e.detail.current
+    },
+    onSwiper(e) {
+      // this.$tools.routerTo(this.list[e].path)
+    }
+  }
 }
 </script>
 
@@ -101,7 +174,6 @@ export default {
   height: 520rpx;
   position: relative;
   z-index: 100;
-  background-color: gray;
 
   .navbar-box {
     position: fixed;
@@ -114,25 +186,29 @@ export default {
       position: absolute;
       left: 0;
       top: 0;
-      z-index: 980;
       width: 100%;
       height: 100%;
       background-color: #fff;
       box-shadow: 0px 4px 6px rgba(140, 140, 140, 0.32);
+      z-index: 500;
     }
 
     .status-bar {
-      border: 1px solid green;
+      position: relative;
+      z-index: 700;
     }
 
     .content {
+      position: relative;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border: 1px solid red;
+      z-index: 700;
 
       .nav-title {
         padding: 14rpx 14rpx 14rpx 24rpx;
+        color: '#fff';
+        font-size: 38rpx;
       }
 
       .search-icon {
