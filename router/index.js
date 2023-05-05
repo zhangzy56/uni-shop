@@ -4,7 +4,20 @@ import { RouterMount, createRouter } from 'uni-simple-router'
 
 const router = createRouter({
   platform: process.env.VUE_APP_PLATFORM, // eg: mp-weixin
-  routes: [...ROUTES]
+  applet: {
+    animationDuration: 0 // 默认 300ms
+  },
+  routes: [
+    ...ROUTES,
+    {
+      path: '*',
+      redirect: to => {
+        return {
+          name: '404'
+        }
+      }
+    }
+  ]
 })
 
 //全局路由前置守卫

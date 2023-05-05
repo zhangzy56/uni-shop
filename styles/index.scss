@@ -14,7 +14,7 @@ page {
 }
 
 // 外边距、内边距全局样式
-@for $i from 0 through 80 {
+@for $i from 0 through 100 {
   .m-#{$i} {
     padding: #{$i}rpx !important;
   }

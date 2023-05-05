@@ -8,15 +8,21 @@
   ],
   "subPackages": [
     {
-      "root": "pages/activity",
+      "root": "sub_pkgs/activity",
       "pages": [
         "sign"
       ]
     },
     {
-      "root": "pages/goods",
+      "root": "sub_pkgs/goods",
       "pages": [
         "list"
+      ]
+    },
+    {
+      "root": "sub_pkgs/public",
+      "pages": [
+        "404"
       ]
     }
   ],
@@ -62,8 +68,8 @@
     "pages/home/index": {
       "network": "all",
       "packages": [
-        "pages/activity",
-        "pages/goods"
+        "sub_pkgs/activity",
+        "sub_pkgs/goods"
       ]
     }
   },
