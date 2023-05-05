@@ -3,7 +3,8 @@
     "pages/home/index",
     "pages/home/category",
     "pages/home/cart",
-    "pages/home/my"
+    "pages/home/my",
+    "pages/home/test"
   ],
   "subPackages": [
     {

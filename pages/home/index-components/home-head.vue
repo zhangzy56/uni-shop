@@ -36,8 +36,6 @@
         <image :src="item.image" mode="aspectFill"></image>
       </swiper-item>
     </swiper>
-
-    <view v-for="item in 200" :key="item">Item</view>
   </view>
 
   <!-- 轮播组件 -->
@@ -74,11 +72,11 @@ export default {
       default() {
         return [
           {
-            image: 'https://demo.shopro.top/uploads/20230107/6b21f96cca4abbdc39a414c201f47ce0.jpg',
+            image: '/static/images/home/swiper-1.jpg',
             title: 'xxxx'
           },
           {
-            image: 'https://demo.shopro.top/uploads/20230106/0de9205044bda74aee566db96daec981.png',
+            image: '/static/images/home/swiper-2.png',
             title: 'xxxx222'
           }
         ]

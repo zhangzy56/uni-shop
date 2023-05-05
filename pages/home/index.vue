@@ -1,13 +1,13 @@
 <template>
   <view class="home-box">
-    <u-no-network @retry="init"></u-no-network>
-
     <home-head :scrollTop="scrollTop" />
+    <Banner />
   </view>
 </template>
 
 <script>
 import HomeHead from './index-components/home-head.vue'
+import Banner from './index-components/banner.vue'
 
 export default {
   data() {
@@ -16,16 +16,22 @@ export default {
     }
   },
   components: {
-    HomeHead
+    HomeHead,
+    Banner
   },
-  onLoad() {},
+  onLoad() {
+    console.log('ROUTES', ROUTES)
+
+    console.log('this.$Router', this.$Router)
+  },
   onPageScroll(e) {
     this.scrollTop = e.scrollTop
   },
+  onPullDownRefresh() {
+    // this.getIndexData()
+    uni.stopPullDownRefresh()
+  },
   methods: {
-    init() {
-      console.log(1111)
-    }
   }
 }
 </script>

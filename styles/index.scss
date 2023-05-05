@@ -2,24 +2,56 @@
 @import '@/uni_modules/uview-ui/index.scss';
 @import '@/styles/colorui.css';
 
-// 字体文件
-@font-face {
-  font-family: OPPOSANS;
-  src: url('@/static/font/OPPOSANS-M-subfont.ttf');
-}
-
-.font-OPPOSANS {
-  font-family: OPPOSANS;
-}
-
 page {
   -webkit-overflow-scrolling: touch; // ios滑动不流畅
   height: 100%;
   background: #f6f6f6;
   width: 100%;
   font-size: 28rpx;
-  font-family: OPPOSANS;
   word-break: break-all; // 英文文本不换行
   white-space: normal;
   color: $u-main-color;
+}
+
+// 外边距、内边距全局样式
+@for $i from 0 through 80 {
+  .m-#{$i} {
+    padding: #{$i}rpx !important;
+  }
+
+  .mt-#{$i} {
+    margin-top: #{$i}rpx !important;
+  }
+
+  .mr-#{$i} {
+    margin-right: #{$i}rpx !important;
+  }
+
+  .mb-#{$i} {
+    margin-bottom: #{$i}rpx !important;
+  }
+
+  .ml-#{$i} {
+    margin-left: #{$i}rpx !important;
+  }
+
+  .p-#{$i} {
+    padding: #{$i}rpx !important;
+  }
+
+  .pt-#{$i} {
+    padding-top: #{$i}rpx !important;
+  }
+
+  .pr-#{$i} {
+    padding-right: #{$i}rpx !important;
+  }
+
+  .pb-#{$i} {
+    padding-bottom: #{$i}rpx !important;
+  }
+
+  .pl-#{$i} {
+    padding-left: #{$i}rpx !important;
+  }
 }
